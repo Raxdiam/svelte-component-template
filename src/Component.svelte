@@ -1,0 +1,1 @@
+<h2>I'm a component!</h2>
