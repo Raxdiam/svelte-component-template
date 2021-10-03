@@ -16,7 +16,7 @@ const name = pkg.name
 1;
 
 export default {
-  input: 'src/index.ts',
+  input: 'src/Component.svelte',
   output: [
     {
       file: pkg.module,
@@ -35,13 +35,13 @@ export default {
       preprocess: sveltePreprocess({ sourceMap: !production }),
       compilerOptions: {
         dev: !production,
-        cssHash: ({ hash, css }) => `r-${hash(css)}`,
+        cssHash: ({ hash, css }) => `s-${hash(css)}`,
       },
     }),
-    scss({ output: 'public/build/global.css' }),
-    resolve({ dedupe: ['svelte'] }),
+    scss(),
+    resolve({ browser: true, dedupe: ['svelte'] }),
     commonjs(),
-    typescript(),
+    typescript({ sourceMap: true }),
     production && terser(),
   ],
   watch: {
